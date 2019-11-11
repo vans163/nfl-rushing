@@ -6,12 +6,19 @@ defmodule Rush do
 
     IO.puts("Starting Rush app..")
 
-    IO.puts("Starting webserver..")
     {:ok, _} = :application.ensure_all_started(:stargate)
 
+    {:ok, ip} = (System.get_env("IP") || "127.0.0.1")
+        |> to_charlist()
+        |> :inet.parse_address()
+    port = (System.get_env("PORT") || "8080")
+        |> :erlang.binary_to_integer()
+
+    IO.puts("Starting webserver on #{inspect ip} #{port}")
+
     webserver = %{
-      ip: {127, 0, 0, 1},
-      port: 8080,
+      ip: ip,
+      port: port,
       hosts: %{
         {:http, "*"} => {Rush.Http, %{}}
       }
