@@ -53,14 +53,18 @@ If you have any questions regarding requirements, do not hesitate to email your 
   
 Source your env and run, you can choose hotreload mode for React or a production build.  
 
-To run the development build.  On localhost port 3000.  
-  
+To run the development build with hotreloading.  On localhost port 3000.  
+
+```
 source .env.local  
 cd priv/panel && yarn install && PORT=3000 yarn start  
 iex -S mix  
-  
+```
+
 To run the release build.  On 0.0.0.0 port 80.  
 
+```
 source .env.prod  
 cd priv/panel && yarn install && yarn build  
 iex -S mix  
+```
