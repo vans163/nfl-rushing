@@ -8,10 +8,10 @@ import { downloadCSV } from './api/csv';
 const { Option } = Select;
 
 const handleSearch = (selectedKeys, confirm) => {
-    confirm();
+  confirm();
 };
 const handleReset = (clearFilters) => {
-    clearFilters();
+  clearFilters();
 };
 
 const columns = [
@@ -133,33 +133,32 @@ const columns = [
 ]
 
 export const RushTable = () => {
-	var [sl] = useGlobalState("local");
-    var filteredInfo = sl.filteredInfo || [];
+  var [sl] = useGlobalState("local");
+  var filteredInfo = sl.filteredInfo || [];
 
-	var setFilteredInfo = function(filters) {
-      setGlobalState('local', v => { return {...v, filteredInfo: filters} })
-    }
-	var setFilteredData = function(data) {
-      setGlobalState('local', v => { return {...v, filteredData: data} })
-    }
+  var setFilteredInfo = function(filters) {
+    setGlobalState('local', v => { return {...v, filteredInfo: filters} })
+  }
+  var setFilteredData = function(data) {
+    setGlobalState('local', v => { return {...v, filteredData: data} })
+  }
 
-    var filteredData = sl.filteredData?sl.filteredData:sl.rushing
-    if (!filteredData)
-    	filteredData = []
+  var filteredData = sl.filteredData?sl.filteredData:sl.rushing
+  if (!filteredData)
+    filteredData = []
 
-	var playerCount = filteredData.length
-    return <div>
-      <Button type="primary">{`Players: ${playerCount}`}</Button>
-      <Button type="primary" onClick={()=> apiLoadTable()}>Load</Button>
-      <Button type="primary" onClick={()=> downloadCSV(filteredData)}>Download CSV</Button>
-      <br/>
-      <br/>
-    	<Table rowKey={"Player"} bordered size={"small"}
-        onChange={(pagination, filters, sorter, extra)=> {
-          setFilteredData(extra.currentDataSource)
-          setFilteredInfo(filters)
-
-        }}
-        pagination={{ pageSize: 50 }} dataSource={sl.rushing} columns={columns} />
-    </div>;
+  var playerCount = filteredData.length
+  return <div>
+    <Button type="primary">{`Players: ${playerCount}`}</Button>
+    <Button type="primary" onClick={()=> apiLoadTable()}>Load</Button>
+    <Button type="primary" onClick={()=> downloadCSV(filteredData)}>Download CSV</Button>
+    <br/>
+    <br/>
+    <Table rowKey={"Player"} bordered size={"small"}
+      onChange={(pagination, filters, sorter, extra)=> {
+        setFilteredData(extra.currentDataSource)
+        setFilteredInfo(filters)
+      }}
+      pagination={{ pageSize: 50 }} dataSource={sl.rushing} columns={columns} />
+  </div>;
 }

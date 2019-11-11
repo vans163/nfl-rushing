@@ -7,5 +7,5 @@ function convertToCSV(arr) {
 }
 
 export const downloadCSV = (data) => {
-	console.log(convertToCSV(data))
+  console.log(convertToCSV(data))
 }

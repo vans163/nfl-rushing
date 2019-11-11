@@ -7,11 +7,11 @@ const { GlobalStateProvider, setGlobalState, useGlobalState, getState } = create
 });
 
 export const getState2 = (key) => {
-    var sl = getState();
-    if (key) {
-        return sl[key];
-    }
-    return sl;
+  var sl = getState();
+  if (key) {
+    return sl[key];
+  }
+  return sl;
 }
 
 export { GlobalStateProvider, setGlobalState, useGlobalState };
