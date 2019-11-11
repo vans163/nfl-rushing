@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { hot } from 'react-hot-loader/root'
 
 import { GlobalStateProvider, useGlobalState, setGlobalState } from './state/state';
-import { apiLoadTable } from './api/api';
 
 import { RushTable } from './RushTable';
 
